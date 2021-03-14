@@ -1,0 +1,4 @@
+include ':Core'
+includeBuild 'DependentsManager'
+include ':app'
+rootProject.name = "FastDevFrame"

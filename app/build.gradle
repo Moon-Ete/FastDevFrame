@@ -1,0 +1,52 @@
+import com.moonete.dep.plugin.BuildConfigs
+import com.moonete.dep.plugin.Dependencies
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id("com.moonete.dep.plugin") apply false
+}
+
+android {
+    compileSdkVersion BuildConfigs.compileSdkVersion
+    buildToolsVersion BuildConfigs.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.moonete.fastdevframe.example"
+        minSdkVersion BuildConfigs.minSdkVersion
+        targetSdkVersion BuildConfigs.targetSdkVersion
+        versionCode BuildConfigs.versionCode
+        versionName BuildConfigs.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+}
+
+dependencies {
+    implementation project(":Core")
+    implementation "com.google.dagger:hilt-android:2.28.3-alpha"
+    Dependencies.AptMap.each { key, compiler -> kapt compiler }
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
