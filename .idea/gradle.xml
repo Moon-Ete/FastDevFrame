@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Core" />
             <option value="$PROJECT_DIR$/DependentsManager" />
+            <option value="$PROJECT_DIR$/Ktx" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
